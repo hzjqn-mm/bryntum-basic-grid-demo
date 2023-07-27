@@ -1,0 +1,4 @@
+{
+  "title": "Basic demo (Vue 3)",
+  "description": "This example shows basic setup of the grid with sorting enabled. It has a few columns with generated data and it uses date and percent columns."
+}
