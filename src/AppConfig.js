@@ -26,9 +26,9 @@ const useGridConfig = (component, overrideConfig) => {
         row          : true,
         checkboxOnly : true
     },
-    cellEditFeature   : true,
-    filterBarFeature  : true,
-    rowReorderFeature : true,
+    // cellEditFeature   : true,
+    // filterBarFeature  : true,
+    // rowReorderFeature : true,
     stripeFeature     : true,
     treeFeature       : true,
     loadMask          : 'Loading tree data...',

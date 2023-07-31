@@ -1,136 +1,769 @@
 // GRID STYLING
+@use "sass:math";
+@import "~@bryntum/grid/source/resources/core-sass/variables";
+@import '~@bryntum/grid/source/resources/core-sass/mixins';
+
+$primary: #a6b0cf;
+$secondary: #556ee6;
+
+//region Grid
+$blue: blue;
+$deep-orange: #556ee6;
+$orange: greenyellow;
+$amber: pink;
+$indigo: indigo;
+$lime: $lime;
+$teal: teal;
+$green: green;
+$light-green: lightgreen;
+$purple: purple;
+$yellow: yellow;
+$red: $secondary;
+$dark-gray: gray !default;
+$gray: gray !default;
+$light-gray: gray !default;
+
+$main-color: $primary;
+$primary-color: $primary;
+$secondary-color: $secondary;
+
+
+//@import 'icon-font';
+
+//region Colors
+
+$blue                                          : #03a9f4 !default;
+$deep-orange                                   : #ff5722 !default;
+$pink                                          : #f783ac !default;
+$orange                                        : #ff9800 !default;
+$amber                                         : #ffc107 !default;
+$indigo                                        : #3f51b5 !default;
+$lime                                          : #cddc39 !default;
+$cyan                                          : #3bc9db !default;
+$teal                                          : #009688 !default;
+$green                                         : #4caf50 !default;
+$light-green                                   : #8bc34a !default;
+$purple                                        : #9c27b0 !default;
+$violet                                        : #9775fa !default;
+$yellow                                        : #ffeb3b !default;
+$red                                           : #f44336 !default;
+$dark-gray                                     : #505057 !default;
+$gray                                          : #b0b0b7 !default;
+$light-gray                                    : #e0e0e7 !default;
+$white                                         : #fff !default;
+
+$darkest                                       : #000 !default;
+$lightest                                      : #fff !default;
+
+$main-color                                    : $blue !default;
+$secondary-color                               : $orange !default;
+
+//endregion
+
+//region layout
+
+// Horizontal space around card items inside a card layout container.
+$card-margin                                   : 1em;
+
+// The border we use on the left side of the right padding element in a header
+// which has to account for a visible scrollbar in a view below.
+// This is approximately the platform's scrollbar border colour but can be overridden in themes.
+$scrollbar-border-color                        : #ddd !default;
+
+//endregion
+
+//region Widgets
+
+// When a Container (including a Panel) lays out elements in its default layout, gaps between items;
+$autocontainer-gap                             : 0.6em !default;
+
+// Mask and float root could be on the same level if widget adopts body, which makes it obvious that float root
+// should have higher z-index
+$mask-z-index                                  : 10000 !default;
+$float-root-z-index                            : 11000 !default;
+
+$widget-color-scheme                           : light !default;
+$widget-font-weight                            : 400 !default;
+
+$widget-highlight-color                        : $secondary-color !default;
+$widget-text-bright-color                      : $secondary-color !default;
+$widget-text-dark-color                        : lighten($darkest, 15) !default;
+$widget-border-color                           : rgba(119, 119, 119, .5) !default;
+$widget-border-radius                          : 2px !default;
+$widget-border-width                           : 1px !default;
+$widget-disabled-border-color                  : $gray !default;
+
+$widget-anchor-width                           : 16px !default;
+$widget-anchor-height                          : 8px !default;
+
+$widget-badge-color                            : $widget-text-bright-color !default;
+$widget-badge-background-color                 : $red !default;
+
+$panel-background-color                        : lighten($dark-gray, 10%) !default;
+$panel-color                                   : $widget-text-bright-color !default;
+$panel-header-background-color                 : $main-color !default;
+$panel-header-color                            : #fff !default;
+$panel-header-font-size                        : null !default;
+$panel-header-font-weight                      : null !default;
+$panel-header-padding                          : 1em !default;
+$panel-header-border-bottom                    : null !default;
+$panel-tool-color                              : $panel-header-color !default;
+$panel-content-padding                         : $panel-header-padding !default;
+$panel-collapse-overlay-box-shadow             : 0 0 10px 0 rgb(0, 0, 0, 30%) !default;
+
+$float-box-shadow                              : 3px 3px 6px rgba(0, 0, 0, 0.4) !default;
+$aligned-above-float-box-shadow                : 3px -3px 6px rgba(0, 0, 0, 0.4) !default;
+
+$gripper-edge-size                             : 1em !default;
+
+$gripper-horz-cursor                           : ns-resize !default;
+$gripper-border                                : 1px solid rgba(0, 0, 0, 0.3) !default;
+$gripper-horz-edge-height                      : $gripper-edge-size !default;
+$gripper-horz-height                           : .25em !default;
+$gripper-horz-width                            : 1.2em !default;
+$gripper-horz-offset                           : .4em !default;
+$gripper-horz-transition                       : opacity 0.2s, margin-inline-start 0.2s, width 0.2s !default;
+
+$gripper-vert-cursor                           : ew-resize !default;
+$gripper-vert-gradient                         : repeating-linear-gradient(90deg, rgba(0, 0, 0, 0.5), rgba(255, 255, 255, 0.8) 3px) !default;
+$gripper-vert-edge-width                       : $gripper-edge-size !default;
+$gripper-vert-width                            : math.div($gripper-vert-edge-width, 2) !default;
+$gripper-vert-height                           : 12px !default;
+$gripper-vert-offset                           : 4px !default;
+$gripper-vert-transition                       : opacity 0.2s, margin-top 0.2s, height 0.2s !default;
+
+$avatar-size                                   : 2.2em !default;
+$avatar-icon-color                             : null !default;
+$avatar-initials-background                    : $blue !default;
+$avatar-initials-color                         : $white !default;
+$avatar-initials-text-transform                : uppercase !default;
+
+$button-default-color                          : scale-color($gray, $lightness : -30%) !default;
+$button-color                                  : $widget-text-bright-color !default;
+$button-disabled-color                         : $dark-gray !default;
+$button-disabled-background-color              : $light-gray !default;
+$button-text-transform                         : none !default;
+$button-font-size                              : null !default;
+$button-font-weight                            : $widget-font-weight !default;
+$button-transition                             : background-color 200ms, color 200ms, border 200ms !default;
+$button-padding                                : 0 1em !default;
+$button-min-height                             : 3em !default;
+$button-toolbar-font-size                      : null !default;
+
+$buttongroup-button-left-margin                : -1px !default;
+
+$checkbox-box-padding                          : 0.15em !default;
+$checkbox-container-vertical-margin            : 0.675em !default;
+// Aligns checkbox's right label and left label vertically
+$checkbox-container-top-margin                 : 0.5em !default;
+$checkbox-box-width                            : 1.6em !default;
+$checkbox-box-height                           : 1.6em !default;
+$checkbox-box-font-size                        : inherit !default;
+$checkbox-box-background-color                 : $primary !default;
+$checkbox-checked-box-background-color         : red;
+$checkbox-box-border-width                     : $widget-border-width !default;
+$checkbox-box-border-transparency              : .5 !default;
+$checkbox-input-size                           : 2.2em !default;
+$checkbox-disabled-transparency                : .8 !default;
+$container-label-color: $primary;
+
+$radio-size                                 : 1.3em !default;
+$radio-border-width                         : $checkbox-box-border-width !default;
+
+$slidetoggle-size                              : 1em !default;
+$slidetoggle-offset                            : $slidetoggle-size * 0.2 !default;
+$slidetoggle-wrapper-height                    : $slidetoggle-size + $slidetoggle-offset * 2 !default;
+$slidetoggle-transition-duration               : .3s;
+
+$container-color                               : $widget-text-bright-color !default;
+
+$datepicker-header-background-color            : $panel-header-background-color !default;
+$datepicker-header-color                       : $panel-header-color !default;
+$datepicker-header-icon-color                  : $panel-color !default;
+$datepicker-weekdays-border-bottom             : $panel-header-border-bottom !default;
+$datepicker-weekdays-color                     : null !default;
+
+
+//$datepicker-background-color : #555 !default;
+$datepicker-color                              : $widget-text-bright-color !default;
+$datepicker-month-color                        : $widget-text-bright-color !default;
+
+$datepicker-cell-border-width                  : $widget-border-width !default;
+$datepicker-cell-border-radius                 : 50% !default;
+$datepicker-cell-size                          : 2.35em !default;
+$datepicker-cell-spacing-vertical              : 5px !default;
+$datepicker-cell-spacing-horizontal            : 4px !default;
+$datepicker-cell-margin                        : $datepicker-cell-spacing-vertical $datepicker-cell-spacing-horizontal !default;
+$datepicker-week-number-color                  : #76c579 !default;
+
+$datepicker-other-month-cell-background-color  : null !default;
+$datepicker-other-month-cell-color             : #bbb !default;
+
+$datepicker-disabled-cell-background-color     : null !default;
+$datepicker-disabled-cell-color                : #aaa !default;
+$datepicker-disabled-cell-opacity              : 0.4 !default;
+
+$datepicker-out-of-range-cell-background-color : null !default;
+$datepicker-out-of-range-cell-color            : #aaa !default;
+$datepicker-out-of-range-cell-opacity          : 0.4 !default;
+
+$datepicker-selected-cell-color                : #fff !default;
+$datepicker-selected-cell-background-color     : $main-color !default;
+$datepicker-selected-cell-border-color         : $datepicker-selected-cell-background-color !default;
+
+$datepicker-hover-cell-color                   : null !default;
+$datepicker-hover-cell-background-color        : transparentize($datepicker-selected-cell-background-color, .85) !default;
+$datepicker-hover-cell-border-color            : transparent !default;
+
+$datepicker-today-cell-color                   : null !default;
+$datepicker-today-cell-background-color        : null !default;
+$datepicker-today-cell-border-color            : $orange !default;
+$datepicker-today-cell-border-width            : $datepicker-cell-border-width !default;
+
+$datepicker-hover-today-cell-color             : null !default;
+$datepicker-hover-today-cell-background-color  : $orange !default;
+$datepicker-hover-today-cell-border-color      : $orange !default;
+
+$datepicker-active-cell-color                  : null !default;
+$datepicker-active-cell-background-color       : null !default;
+$datepicker-active-cell-border-color           : $main-color !default;
+
+$yearpicker-content-template-columns           : repeat(4, 1fr) !default;
+$yearpicker-content-gap                        : 1em !default;
+$yearpicker-content-padding                    : 1em !default;
+$datepicker-selected-range-opacity             : .15 !default;
+
+$time-picker-color                             : $datepicker-color !default;
+
+$label-color                                   : $primary-color !default;
+$label-font-size                               : 1em !default;
+$label-text-transform                          : null !default;
+$label-font-weight                             : null !default;
+$label-text-align                              : null !default;
+$container-label-color                         : $primary-color !default;
+
+$field-color                                   : $widget-text-dark-color !default;
+$field-updated-color                           : lighten($field-color, 30%) !default;
+$field-background-color                        : $lightest !default;
+$field-invalid-border-color                    : $red !default;
+$field-outer-border-color                      : null !default;
+$field-border-radius                           : $widget-border-radius !default;
+$field-border-width                            : $widget-border-width !default;
+$field-border-color                            : $widget-border-color !default;
+$field-highlight-color                         : $widget-highlight-color !default;
+$field-input-padding                           : 0.8em !default;
+$field-label-above-margin                      : 0 0 0.4em 0.1em !default;
+$field-active-label-color                      : $label-color !default;
+$field-disabled-border-style                   : solid !default;
+$field-disabled-label-color                    : $gray !default;
+$field-placeholder-color                       : $gray !default;
+$field-container-active-label-color            : $widget-text-bright-color !default;
+$field-container-margin-left                   : null !default;
+$field-trigger-color                           : $widget-border-color !default;
+$field-trigger-font-size                       : null !default;
+$field-start-trigger-padding                   : $field-input-padding 0 !default;
+$field-end-trigger-padding                     : 0 $field-input-padding !default;
+$field-disabled-trigger-color                  : lighten($field-trigger-color, 20%) !default;
+
+$label-margin-start                            : $field-container-margin-left !default;
+$label-margin-end                              : 1em !default;
+
+$error-tip-color                               : $red !default;
+$error-tip-background-color                    : lighten(#fffde7, 3) !default;
+
+$histogram-bar-color                           : $green !default;
+$histogram-bar-border-width                    : null !default;
+$histogram-bar-border-color                    : null !default;
+$histogram-exceeds-top-bar-color               : $red !default;
+$histogram-outline-color                       : #f99 !default;
+$histogram-transition-duration                 : 1000ms;
+$histogram-bar-legend-font-size                : 75% !default;
+$histogram-bar0-color                          : $green !default;
+$histogram-bar0-border-width                   : null !default;
+$histogram-bar0-border-color                   : null !default;
+$histogram-bar1-color                          : $blue !default;
+$histogram-bar1-border-width                   : null !default;
+$histogram-bar1-border-color                   : null !default;
+$histogram-bar2-color                          : $indigo !default;
+$histogram-bar2-border-width                   : null !default;
+$histogram-bar2-border-color                   : null !default;
+$histogram-bar3-color                          : $teal !default;
+$histogram-bar3-border-width                   : null !default;
+$histogram-bar3-border-color                   : null !default;
+$histogram-bar4-color                          : $orange !default;
+$histogram-bar4-border-width                   : null !default;
+$histogram-bar4-border-color                   : null !default;
+$histogram-bar5-color                          : $lime !default;
+$histogram-bar5-border-width                   : null !default;
+$histogram-bar5-border-color                   : null !default;
+
+$panel-toolbar-background-color                : $panel-background-color !default;
+$panel-toolbar-color                           : $panel-color !default;
+$panel-toolbar-padding                         : 0.5em !default;
+$panel-bbar-padding                            : 1em !default;
+$panel-toolbar-gap                             : 0.5em !default;
+$panel-toolbar-dock-header-background-color    : transparent !default;
+$panel-toolbar-dock-header-margin              : 1em !default;
+$panel-toolbar-dock-header-padding             : 0 !default;
+$panel-toolbar-top-border-bottom               : null !default;
+$panel-toolbar-content-min-size                : 4em !default;
+$panel-bbar-content-min-size                   : 3em !default;
+
+$popup-background-color                        : $panel-background-color !default;
+$popup-color                                   : $panel-color !default;
+$popup-header-background-color                 : $panel-header-background-color !default;
+$popup-header-color                            : $panel-header-color !default;
+$popup-modal-mask-color                        : rgba(100, 100, 100, 0.5);
+
+$menu-color                                    : $widget-text-bright-color !default;
+$menu-background-color                         : lighten($panel-background-color, 5) !default;
+$menu-item-border-color                        : lighten($panel-background-color, 15) !default;
+$menu-item-separator-color                     : lighten($menu-item-border-color, 10) !default;
+$menu-item-icon-width                          : 1.25em !default;
+$menu-highlight-color                          : $main-color !default;
+$menu-active-color                             : $menu-color !default;
+
+$list-color                                    : $widget-text-bright-color !default;
+$list-active-color                             : $list-color !default;
+$list-background-color                         : lighten($panel-background-color, 5) !default;
+$list-item-border-color                        : lighten($panel-background-color, 15) !default;
+$list-item-separator-color                     : $list-item-border-color !default;
+$list-highlight-color                          : $main-color !default;
+
+$slider-thumb-color                            : $main-color !default;
+$slider-track-color                            : $light-gray !default;
+$slider-thumb-radius                           : 10px !default;
+$slider-track-height                           : 8px !default;
+$slider-contrast                               : 40% !default;
+$slider-margin                                 : $slider-thumb-radius 0 !default;
+$slider-label-font-size                        : null !default;
+
+$splitter-size                                 : .5em !default;
+$splitter-hover-size                           : 10px !default;
+$touch-splitter-size                           : 2em !default;
+$splitter-size-disabled                        : 1px !default;
+$splitter-background-color                     : lighten($gray, 10%) !default;
+
+$tabpanel-background-color                     : darken($panel-background-color, 5) !default;
+
+$tabpanel-border-color                         : $widget-border-color !default;
+$tabpanel-border-width                         : 0 !default;
+$tabpanel-border-style                         : solid !default;
+
+$tabpanel-body-padding                         : $card-margin !default;
+
+$tabpanel-tabs-border-bottom                   : null !default;
+$tabpanel-tabs-background-color                : transparent !default;
+
+$tabpanel-tab-background-color                 : transparent !default;
+$tabpanel-tab-border-color                     : transparent !default;
+$tabpanel-tab-border-width                     : 0 !default;
+$tabpanel-tab-border-style                     : solid !default;
+$tabpanel-tab-color                            : darken($widget-text-bright-color, 20) !default;
+$tabpanel-tab-font-weight                      : $widget-font-weight !default;
+$tabpanel-tab-font-size                        : null !default;
+$tabpanel-tab-min-width                        : 3em !default;
+$tabpanel-tab-height                           : auto !default;
+$tabpanel-tab-text-transform                   : none !default;
+$tabpanel-tab-padding                          : 0.6em 1em !default;
+
+$tabpanel-tab-active-background-color          : $tabpanel-background-color !default;
+$tabpanel-tab-active-border-color              : $tabpanel-border-color !default;
+$tabpanel-tab-active-color                     : $widget-text-bright-color !default;
+$tabpanel-tab-active-font-weight               : null !default;
+
+$tabpanel-tab-hover-background-color           : darken($panel-background-color, 5) !default;
+$tabpanel-tab-hover-color                      : $widget-text-bright-color !default;
+
+$textareafield-input-padding                   : $field-input-padding;
+
+$toast-background-color                        : $panel-background-color !default;
+$toast-color                                   : $widget-text-bright-color !default;
+$toast-progress-color                          : $main-color !default;
+
+$tooltip-color                                 : $widget-text-bright-color !default;
+$tooltip-background-color                      : lighten($panel-background-color, 5) !default;
+$tooltip-side-header-font-size                 : null !default;
+
+$mask-background-color                         : $main-color !default;
+$mask-color                                    : $widget-text-bright-color !default;
+$mask-progress-color                           : $secondary-color !default;
+
+$chipview-background-color                     : transparent !default;
+$chip-gap                                      : .3em !default;
+$chip-padding-block                            : .3em !default;
+$chip-padding-inline                           : .7em !default;
+$chip-close-icon-padding                       : 0.3em !default;
+$chip-border-radius                            : 1em !default;
+$chip-icon-size                                : 1.5em !default;
+$chip-icon-spacing                             : .5em !default;
+
+$chip-background-color                         : $light-gray !default;
+$chip-color                                    : lighten($widget-text-dark-color, 5) !default;
+$chip-icon-background-color                    : lighten($light-gray, 5) !default;
+$chip-icon-color                               : $dark-gray !default;
+
+$chip-hover-background-color                   : darken($light-gray, 5) !default;
+$chip-hover-color                              : $widget-text-dark-color !default;
+$chip-hover-icon-background-color              : $chip-icon-background-color !default;
+$chip-hover-icon-color                         : $chip-icon-color !default;
+
+$chip-selected-background-color                : $main-color !default;
+$chip-selected-color                           : $widget-text-bright-color !default;
+$chip-selected-icon-background-color           : $chip-hover-icon-background-color !default;
+$chip-selected-icon-color                      : $chip-selected-background-color !default;
+
+$chip-hover-selected-background-color          : darken($chip-selected-background-color, 5) !default;
+$chip-hover-selected-color                     : $chip-selected-color !default;
+$chip-hover-selected-icon-background-color     : $chip-selected-icon-background-color !default;
+$chip-hover-selected-icon-color                : $chip-hover-selected-background-color !default;
+
+$scale-line-color                              : #9c9c9c !default;
+$scale-label-color                             : #808080 !default;
+
+$fieldfilterpickergroup-gap                    : 2.2em !default;
+
+$colorpicker-no-color-border-color             : $widget-border-color !default;
+$colorpicker-active-outline-color              : #999 !default;
+
+$grid-row-height: 72px !default;
+
+$grid-text-brightest-color: $secondary !default;
+$grid-text-darkest-color: #a6b0cf !default;
+
+$grid-row-even-color: #2a3042 !default; // modified
+$grid-row-odd-color: lighten($grid-row-even-color, 2); // modified
+
+$grid-selection-color: $secondary-color !default;
+
+$grid-background-color: #2a3042 !default;
+$grid-highlight-color: $secondary-color !default;
+$grid-red-color: $secondary !default;
+$grid-disabled-opacity: 0.5 !default;
+
+$grid-cell-focused-outline-color: lighten($main-color, 10%) !default;
+$grid-cell-focused-outline-width: 2px !default;
+$grid-cell-focused-outline-style: solid !default;
+$grid-cell-focused-background-color: null !default;
+
+$grid-cell-color: $grid-text-darkest-color !default;
+$grid-cell-readonly-color: lighten($grid-text-darkest-color, 70%) !default;
+$grid-cell-border-color: $light-gray !default;
+$grid-cell-font-weight: 300 !default;
+$grid-cell-hover-background-color: fade-out(
+  $grid-selection-color,
+  0.9
+) !default;
+$grid-cell-row-hover-background-color: null !default;
+$grid-cell-action-column-color: lighten($grid-text-darkest-color, 30%) !default;
+
+$grid-row-hover-background-color: fade-out($grid-selection-color, 0.9) !default;
+$grid-row-selected-background-color: fade-out(
+  $grid-selection-color,
+  0.8
+) !default;
+$grid-row-selected-cell-background-color: fade-out(
+  $grid-selection-color,
+  0.85
+) !default;
+$grid-focus-row-selected-background-color: fade-out(
+  $grid-selection-color,
+  0.9
+) !default;
+$grid-focus-row-selected-cell-background-color: fade-out(
+  $grid-selection-color,
+  0.8
+) !default;
+
+//endregion
+
+//region Header & Footer
+
+$grid-header-background-color: $light-gray !default;
+$grid-header-hover-background-color: lighten(
+  $grid-header-background-color,
+  5
+) !default;
+$grid-header-focus-background-color: lighten(
+  $grid-header-background-color,
+  2.5
+) !default;
+$grid-header-border-color: $gray !default;
+$grid-header-invalid-drag-color: $red !default;
+$grid-header-container-border-bottom-width: 1px !default;
+$grid-header-padding: 1em 0.5em !default;
+$grid-header-zindex: 4 !default; // 4 needed for strangeness in docs where group row is above header
+$grid-header-box-shadow: null !default;
+$grid-header-resizing-background-color: $grid-header-hover-background-color !default;
+
+$grid-header-icon-target: "" !default;
+
+$grid-header-icon-color: $gray !default;
+$grid-header-icon-light-color: darken(
+  $grid-header-background-color,
+  5
+) !default;
+$grid-header-icon-highlight-color: $secondary-color !default;
+$grid-header-icon-position: absolute !default;
+$grid-header-icon-top: 50% !default;
+$grid-header-icon-transform: translateY(-50%) !default;
+$grid-header-icon-font-size: null !default;
+
+$grid-header-resizer-handle-width: 10px !default;
+$grid-header-touch-resizer-handle-width: 20px !default;
+
+$grid-header-font-weight: inherit !default;
+$grid-header-font-size: 1em !default;
+$grid-header-text-color: lighten($grid-text-darkest-color, 15) !default;
+$grid-header-text-transform: none !default;
+
+$grid-header-filtered-color: #666 !default;
+
+$grid-footer-background-color: $grid-header-background-color !default;
+$grid-footer-border-color: $grid-header-border-color !default;
+$grid-footer-outline-color: $grid-header-border-color !default;
+$grid-footer-outline-width: $grid-header-container-border-bottom-width !default;
+$grid-footer-text-color: $grid-header-text-color !default;
+$grid-footer-box-shadow: $grid-header-box-shadow !default;
+
+//endregion
+
+//region region resize
+
+$grid-splitter-width: 1px !default;
+$grid-splitter-zindex: $grid-header-zindex + 1 !default; // above header
+$grid-region-resize-splitter-width: $splitter-size !default;
+$grid-region-collapsed-width: 0 !default;
+$grid-region-resize-splitter-collapsed-width: $splitter-size !default;
+$grid-region-resize-splitter-width-hover: $splitter-hover-size !default;
+$grid-region-resize-splitter-narrow-color: darken(
+  $grid-header-border-color,
+  10
+) !default;
+$grid-region-resize-splitter-width-touch: $touch-splitter-size !default;
+
+//endregion
+
+//region Columns
+
+$action-item-color: scale_color($grid-cell-color, $lightness: 20%) !default;
+$action-item-hover-color: $main-color !default;
+
+$percent-bar-fill: $main-color !default;
+$percent-bar-low-fill: $red !default;
+$percent-bar-color: $widget-text-bright-color !default;
+$percent-bar-low-color: $widget-text-dark-color !default;
+$percent-bar-background: #f1f1f1 !default;
+
+$rownumber-background: $grid-background-color !default;
+$rownumber-border-color: $grid-cell-border-color !default;
+$rownumber-selected-background: fade($grid-selection-color, 50%) !default;
+$rownumber-hover-background: $grid-selection-color !default;
+
+$checkbox-selection-background: $grid-row-hover-background-color !default;
+$checkbox-selection-hover-background: $grid-row-selected-background-color !default;
+$checkbox-selection-selected-background: $rownumber-selected-background !default;
+
+$rating-empty-color: transparentize($light-gray, 0.7) !default;
+$rating-filled-color: lighten($amber, 10) !default;
+
+$tree-icon-width: 1.25em !default;
+$tree-expander-color: $main-color !default;
+$tree-parent-font-weight: 400 !default;
+$tree-parent-color: lighten($grid-cell-color, 30%) !default;
+
+//endregion
+
+$quickfind-background-color: lighten($yellow, 20) !default;
+$quickfind-badge-color: darken($yellow, 30) !default;
+$quickfind-header-badge-color: $quickfind-badge-color !default;
+$quickfind-font-weight: bold !default;
+
+$rowreorder-box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2) !default;
+$rowreorder-row-background: $grid-row-even-color !default;
+$rowreorder-indicator-width: 2px !default;
+$rowreorder-indicator-color: $main-color !default;
+$rowreorder-indicator-invalid-color: $red !default;
+$rowreorder-indicator-invalid-border: none !default;
+
+$grid-group-header-color: $dark-gray !default;
+$grid-group-header-background-color: #fff !default;
+$grid-group-header-line-color: $grid-header-border-color !default;
+$grid-group-header-line-width: 2px !default;
+$grid-group-header-icon-color: $dark-gray !default;
+$grid-group-header-font-weight: 500 !default;
+$grid-group-column-header-icon-color: $grid-header-icon-highlight-color !default;
+$grid-groupsummary-background-color: lighten($light-gray, 8) !default;
+$grid-group-header-text-transform: none !default;
+
+$sort-color: $grid-header-text-color !default;
+$sort-index-color: darken($grid-header-icon-color, 20) !default;
+
+$columndragtoolbar-background: $panel-background-color !default;
+$columndragtoolbar-box-shadow: none !default;
+$columndragtoolbar-border-radius: 1em !default;
+$columndragtoolbar-opacity: 0.4 !default;
+$columndragtoolbar-hover-opacity: 0.8 !default;
+$columndragtoolbar-default-color: $main-color !default;
+$columndragtoolbar-default-hover-color: $columndragtoolbar-default-color !default;
+$columndragtoolbar-icon-color: $main-color !default;
+$columndragtoolbar-secondary-color: $secondary-color !default;
+$columndragtoolbar-secondary-hover-color: $columndragtoolbar-secondary-color !default;
+$columndragtoolbar-secondary-background-color: transparent !default;
+$columndragtoolbar-button-color: $grid-text-brightest-color !default;
+$columndragtoolbar-button-border-width: 0.3em !default;
+$columndragtoolbar-button-background-color: transparent !default;
+$columndragtoolbar-title-color: #fff !default;
+$columndragtoolbar-button-box-shadow: none !default;
+$columndragtoolbar-button-hover-box-shadow: none !default;
+
+$celledit-background-color: transparent !default;
+$celledit-border-width: 0 !default;
+$celledit-border-color: null !default;
+
+@mixin b-grid-header-icon($color) {
+  font-family: $icon-font;
+  font-weight: $icon-font-weight;
+  font-size: $grid-header-icon-font-size;
+  color: $color;
+  margin-inline-start: 0.5em;
+  transition: transform 0.3s, color 0.2s;
+  transform: none; // needed for safari
+  background: inherit; /* Transparent bg will look bad if there is text under the icon */
+}
+
 // Alter grid variables before including classic.scss below to override defaults
 
-$custom-highlight-color             : #9c27b0;
+// $custom-highlight-color             : #9c27b0;
 
-// Color used for menu selection etc
-$main-color                         : #f3f3f3;
+// // Color used for menu selection etc
+// $main-color                         : #334066;
 
-// Color used for grid selection etc
-$secondary-color                    : #999;
+// // Color used for grid selection etc
+// $secondary-color                    : #A6B0CF;
 
-// Headers
-$grid-header-background-color       : transparent;
-$grid-header-font-weight            : 700;
-$grid-header-border-color           : #ddd;
-$grid-header-hover-background-color : transparent;
-$grid-header-icon-color             : #000;
+// // Headers
+// $grid-header-background-color       : transparent;
+// $grid-header-font-weight            : 700;
+// $grid-header-border-color           : #A6B0CF;
+// $grid-header-hover-background-color : transparent;
+// $grid-header-icon-color             : #000;
 
-// Cells
-$grid-cell-border-color             : lighten($grid-header-border-color, 5);
-$grid-cell-font-weight              : 400;
+// // Cells
+// $grid-cell-border-color             : lighten($grid-header-border-color, 5);
+// $grid-cell-font-weight              : 400;
 
-// Focused cell
-$grid-cell-focused-outline-color    : #ccc;
-$grid-cell-focused-border-radius    : 4px;
+// // Focused cell
+// $grid-cell-focused-outline-color    : #ccc;
+// $grid-cell-focused-border-radius    : 4px;
 
-// WIDGET STYLING
+// // WIDGET STYLING
 
-// Shared among widgets
-$widget-font-weight                 : 400;
-$widget-text-bright-color           : #262626;
-$widget-border-width                : 1px;
-$widget-border-radius               : 4px;
+// // Shared among widgets
+// $widget-font-weight                 : 400;
+// $widget-text-bright-color           : #262626;
+// $widget-border-width                : 1px;
+// $widget-border-radius               : 4px;
 
-// Background in popups and menus
-$panel-background-color             : #fff;
+// // Background in popups and menus
+// $panel-background-color             : #fff;
+// $grid-background-color              : #2A3042;
 
-// Menu
-$menu-item-border-color             : transparent;
-$menu-item-separator-color          : #c0c0c0;
+// // Menu
+// $menu-item-border-color             : transparent;
+// $menu-item-separator-color          : #c0c0c0;
 
-// Buttons in the demo header are hardcoded to be blue, change blue to be grey :)
-$blue                               : $main-color;
+// // Buttons in the demo header are hardcoded to be blue, change blue to be grey :)
+// $blue                               : $main-color;
 
 // This path will need to be adjusted if your project structure is different
-$fa-font-path                       : '../../../build/fonts';
+$fa-font-path: "~@bryntum/grid/fonts";
 
 // Extend the classic theme
-@import '~@bryntum/grid/source/resources/sass/themes/classic.scss';
+@import "~@bryntum/grid/source/resources/sass/themes/classic.scss";
 
 // Override the theme-info rule with our theme info
 .b-theme-info:before {
-    content : '{"name":"Custom"}';
+  content: '{"name":"Custom"}';
 }
 
 // Overrides for things that cannot currently be addressed using variables above
 
 .b-grid {
-    border                     : 2px solid $custom-highlight-color;
-    background-color           : #fff;
-    border-bottom-left-radius  : 4px;
-    border-bottom-right-radius : 4px;
+  // border                     : 2px solid $custom-highlight-color;
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
 }
 
 // Want thicker bottom border in headers
 .b-grid .b-grid-header-container {
-    border-bottom-width : 2px;
+  border-bottom-width: 2px;
 }
 
 // ...and no right border
 .b-grid-headers .b-grid-header {
-    border-inline-end-color : transparent;
+  border-inline-end-color: transparent;
 }
 
 // No right border for cells either
 .b-grid-subgrid .b-grid-cell {
-    border-inline-end-color : transparent;
+  border-inline-end-color: transparent;
 }
 
 // Adds border for menu
 .b-menu {
-    border : 1px solid #c0c0c0;
+  border: 1px solid #c0c0c0;
 }
 
 // Hides arrow from popups
 .b-anchor {
-    svg {
-        display : none;
-    }
+  svg {
+    display: none;
+  }
 }
 
 // DEMO SPECIFIC, NOT PART OF THE GRIDS THEME
 
 // Font, grid and widgets inherits whatever is used
 body {
-    font-family      : "Helvetica Neue", Helvetica, Arial, sans-serif;
-    visibility       : visible;
-    background-color : #888;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  visibility: visible;
+  background-color: #888;
 }
 
 // Give demo header in another color
 .demo-header {
-    background-color        : $custom-highlight-color;
-    border-top-left-radius  : 4px;
-    border-top-right-radius : 4px;
+  // background-color        : $custom-highlight-color;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
 }
 
 //  Some padding, just because
 div#container {
-    padding    : 3em;
-    // Other demos have strict height settings, we want to be sure padding is applied
-    width      : auto !important;
-    height     : auto !important;
-    min-height : auto;
+  padding: 3em;
+  // Other demos have strict height settings, we want to be sure padding is applied
+  width: auto !important;
+  height: auto !important;
+  min-height: auto;
 }
 
 // Hide irrelevant combos in info popup
 #size-combo,
 #hintButton,
 #hintCheck {
-    display : none !important;
+  display: none !important;
 }
 
 .b-panel-header {
-    background-color : $custom-highlight-color;
+  // background-color : $custom-highlight-color;
 }
 
 .b-codeeditor {
-    .b-popup-header {
-        background-color : $custom-highlight-color;
-    }
+  .b-popup-header {
+    // background-color : $custom-highlight-color;
+  }
 
-    &.b-floating {
-        left : auto;
-    }
+  &.b-floating {
+    left: auto;
+  }
 }
